@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		940220E41C419FF100DD6635 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940220E31C419FF100DD6635 /* MapKit.framework */; };
 		948398681C405EF60007172F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948398671C405EF60007172F /* AppDelegate.swift */; };
 		9483986A1C405EF60007172F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948398691C405EF60007172F /* ViewController.swift */; };
 		9483986D1C405EF60007172F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9483986B1C405EF60007172F /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		940220E31C419FF100DD6635 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		948398641C405EF60007172F /* MapKitTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapKitTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		948398671C405EF60007172F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		948398691C405EF60007172F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				940220E41C419FF100DD6635 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +63,7 @@
 				9483986E1C405EF60007172F /* Assets.xcassets */,
 				948398701C405EF60007172F /* LaunchScreen.storyboard */,
 				948398731C405EF60007172F /* Info.plist */,
+				940220E31C419FF100DD6635 /* MapKit.framework */,
 			);
 			path = MapKitTutorial;
 			sourceTree = "<group>";
@@ -286,6 +290,7 @@
 				948398781C405EF60007172F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
