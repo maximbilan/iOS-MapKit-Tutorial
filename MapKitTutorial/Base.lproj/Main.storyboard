@@ -29,6 +29,9 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kdR-uO-awB" secondAttribute="bottom" id="mo6-oq-eRn"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="kdR-uO-awB" id="0Wp-ha-gPa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
