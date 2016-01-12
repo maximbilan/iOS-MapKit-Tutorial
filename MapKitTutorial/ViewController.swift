@@ -26,7 +26,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	
 	private var annotation: MKAnnotation!
 	private var locationManager: CLLocationManager!
-	private var isCurrentLocation: Bool = false
 	
 	// MARK: - Activity Indicator
 	
@@ -39,10 +38,50 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 		self.navigationItem.leftBarButtonItem = currentLocationButton
 		
 		mapView.delegate = self
+		
+		activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+		activityIndicator.hidesWhenStopped = true
+		self.view.addSubview(activityIndicator)
 	}
 	
-	func currentLocationButtonAction(barButton: UIBarButtonItem) {
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
 		
+		activityIndicator.center = self.view.center
+	}
+	
+	func currentLocationButtonAction(sender: UIBarButtonItem) {
+		if (CLLocationManager.locationServicesEnabled()) {
+			if locationManager == nil {
+				locationManager = CLLocationManager()
+			}
+			locationManager?.requestWhenInUseAuthorization()
+			locationManager.delegate = self
+			locationManager.desiredAccuracy = kCLLocationAccuracyBest
+			locationManager.requestAlwaysAuthorization()
+			locationManager.startUpdatingLocation()
+		}
+	}
+	
+	// MARK: - CLLocationManagerDelegate
+	
+	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		
+		let location = locations.last
+		let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+		let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+		
+		self.mapView.setRegion(region, animated: true)
+		
+		if self.mapView.annotations.count != 0 {
+			annotation = self.mapView.annotations[0]
+			self.mapView.removeAnnotation(annotation)
+		}
+		
+		let pointAnnotation = MKPointAnnotation()
+		pointAnnotation.coordinate = location!.coordinate
+		pointAnnotation.title = ""
+		mapView.addAnnotation(pointAnnotation)
 	}
 
 }
