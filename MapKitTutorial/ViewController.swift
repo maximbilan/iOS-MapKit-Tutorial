@@ -15,6 +15,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	
 	@IBOutlet weak var mapView: MKMapView!
 	
+	// MARK: - Search
+	
+	private var searchController: UISearchController!
+	private var localSearchRequest: MKLocalSearchRequest!
+	private var localSearch: MKLocalSearch!
+	private var localSearchResponse: MKLocalSearchResponse!
+	
 	private var annotation: MKAnnotation!
 	private var locationManager: CLLocationManager!
 	
@@ -24,5 +31,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 		mapView.delegate = self
 	}
 
+	// MARK: - MKMapViewDelegate
+	
+	// MARK: - CLLocationManagerDelegate
+	
 }
 
