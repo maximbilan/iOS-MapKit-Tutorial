@@ -26,6 +26,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	
 	private var annotation: MKAnnotation!
 	private var locationManager: CLLocationManager!
+	private var isCurrentLocation: Bool = false
 	
 	// MARK: - Activity Indicator
 	
@@ -65,6 +66,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 			locationManager.desiredAccuracy = kCLLocationAccuracyBest
 			locationManager.requestAlwaysAuthorization()
 			locationManager.startUpdatingLocation()
+			isCurrentLocation = true
 		}
 	}
 	
@@ -113,6 +115,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	// MARK: - CLLocationManagerDelegate
 	
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		
+		if !isCurrentLocation {
+			return
+		}
+		
+		isCurrentLocation = false
 		
 		let location = locations.last
 		let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
