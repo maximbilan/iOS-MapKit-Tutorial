@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
 
 	// MARK: - Outlets
 	
@@ -37,6 +37,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 		let currentLocationButton = UIBarButtonItem(title: "Current Location", style: UIBarButtonItemStyle.Plain, target: self, action: "currentLocationButtonAction:")
 		self.navigationItem.leftBarButtonItem = currentLocationButton
 		
+		let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: "searchButtonAction:")
+		self.navigationItem.rightBarButtonItem = searchButton
+		
 		mapView.delegate = self
 		
 		activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
@@ -50,6 +53,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 		activityIndicator.center = self.view.center
 	}
 	
+	// MARK: - Actions
+	
 	func currentLocationButtonAction(sender: UIBarButtonItem) {
 		if (CLLocationManager.locationServicesEnabled()) {
 			if locationManager == nil {
@@ -60,6 +65,48 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 			locationManager.desiredAccuracy = kCLLocationAccuracyBest
 			locationManager.requestAlwaysAuthorization()
 			locationManager.startUpdatingLocation()
+		}
+	}
+	
+	func searchButtonAction(button: UIBarButtonItem) {
+		if searchController == nil {
+			searchController = UISearchController(searchResultsController: nil)
+		}
+		searchController.hidesNavigationBarDuringPresentation = false
+		self.searchController.searchBar.delegate = self
+		presentViewController(searchController, animated: true, completion: nil)
+	}
+	
+	func searchBarSearchButtonClicked(searchBar: UISearchBar){
+		searchBar.resignFirstResponder()
+		dismissViewControllerAnimated(true, completion: nil)
+		if self.mapView.annotations.count != 0 {
+			annotation = self.mapView.annotations[0]
+			self.mapView.removeAnnotation(annotation)
+		}
+		
+		localSearchRequest = nil
+		localSearch = nil
+		localSearchResponse = nil
+		
+		localSearchRequest = MKLocalSearchRequest()
+		localSearchRequest.naturalLanguageQuery = searchBar.text
+		localSearch = MKLocalSearch(request: localSearchRequest)
+		localSearch.startWithCompletionHandler { (localSearchResponse, error) -> Void in
+			
+			if localSearchResponse == nil {
+				let alert = UIAlertView(title: nil, message: NSLocalizedString("PLACE_NOT_FOUND", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("TRY_AGAIN", comment: ""))
+				alert.show()
+				return
+			}
+			
+			let pointAnnotation = MKPointAnnotation()
+			pointAnnotation.title = searchBar.text
+			pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: localSearchResponse!.boundingRegion.center.latitude, longitude:     localSearchResponse!.boundingRegion.center.longitude)
+			
+			let pinAnnotationView = MKPinAnnotationView(annotation: pointAnnotation, reuseIdentifier: nil)
+			self.mapView.centerCoordinate = pointAnnotation.coordinate
+			self.mapView.addAnnotation(pinAnnotationView.annotation!)
 		}
 	}
 	
