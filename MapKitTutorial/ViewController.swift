@@ -32,6 +32,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	
 	private var activityIndicator: UIActivityIndicatorView!
 	
+	// MARK: - UIViewController's methods
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -69,6 +71,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 			isCurrentLocation = true
 		}
 	}
+	
+	// MARK: - Search
 	
 	func searchButtonAction(button: UIBarButtonItem) {
 		if searchController == nil {
