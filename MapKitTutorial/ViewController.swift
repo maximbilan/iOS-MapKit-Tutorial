@@ -83,6 +83,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 		presentViewController(searchController, animated: true, completion: nil)
 	}
 	
+	// MARK: - UISearchBarDelegate
+	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar){
 		searchBar.resignFirstResponder()
 		dismissViewControllerAnimated(true, completion: nil)
