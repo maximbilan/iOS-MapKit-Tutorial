@@ -88,33 +88,30 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	func searchBarSearchButtonClicked(searchBar: UISearchBar){
 		searchBar.resignFirstResponder()
 		dismissViewControllerAnimated(true, completion: nil)
+		
 		if self.mapView.annotations.count != 0 {
 			annotation = self.mapView.annotations[0]
 			self.mapView.removeAnnotation(annotation)
 		}
 		
-		localSearchRequest = nil
-		localSearch = nil
-		localSearchResponse = nil
-		
 		localSearchRequest = MKLocalSearchRequest()
 		localSearchRequest.naturalLanguageQuery = searchBar.text
 		localSearch = MKLocalSearch(request: localSearchRequest)
-		localSearch.startWithCompletionHandler { (localSearchResponse, error) -> Void in
+		localSearch.startWithCompletionHandler { [weak self] (localSearchResponse, error) -> Void in
 			
 			if localSearchResponse == nil {
-				let alert = UIAlertView(title: nil, message: NSLocalizedString("PLACE_NOT_FOUND", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("TRY_AGAIN", comment: ""))
+				let alert = UIAlertView(title: nil, message: NSLocalizedString("PLACE_NOT_FOUND", comment: ""), delegate: self, cancelButtonTitle: "Try again")
 				alert.show()
 				return
 			}
 			
 			let pointAnnotation = MKPointAnnotation()
 			pointAnnotation.title = searchBar.text
-			pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: localSearchResponse!.boundingRegion.center.latitude, longitude:     localSearchResponse!.boundingRegion.center.longitude)
+			pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: localSearchResponse!.boundingRegion.center.latitude, longitude: localSearchResponse!.boundingRegion.center.longitude)
 			
 			let pinAnnotationView = MKPinAnnotationView(annotation: pointAnnotation, reuseIdentifier: nil)
-			self.mapView.centerCoordinate = pointAnnotation.coordinate
-			self.mapView.addAnnotation(pinAnnotationView.annotation!)
+			self!.mapView.centerCoordinate = pointAnnotation.coordinate
+			self!.mapView.addAnnotation(pinAnnotationView.annotation!)
 		}
 	}
 	
