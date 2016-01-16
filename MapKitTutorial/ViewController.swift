@@ -100,7 +100,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 		localSearch.startWithCompletionHandler { [weak self] (localSearchResponse, error) -> Void in
 			
 			if localSearchResponse == nil {
-				let alert = UIAlertView(title: nil, message: NSLocalizedString("PLACE_NOT_FOUND", comment: ""), delegate: self, cancelButtonTitle: "Try again")
+				let alert = UIAlertView(title: nil, message: "Place not found", delegate: self, cancelButtonTitle: "Try again")
 				alert.show()
 				return
 			}
