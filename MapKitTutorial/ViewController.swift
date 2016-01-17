@@ -85,7 +85,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	
 	// MARK: - UISearchBarDelegate
 	
-	func searchBarSearchButtonClicked(searchBar: UISearchBar){
+	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 		searchBar.resignFirstResponder()
 		dismissViewControllerAnimated(true, completion: nil)
 		
