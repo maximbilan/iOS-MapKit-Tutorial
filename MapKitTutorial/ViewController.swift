@@ -44,6 +44,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 		self.navigationItem.rightBarButtonItem = searchButton
 		
 		mapView.delegate = self
+		mapView.mapType = .Hybrid
 		
 		activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
 		activityIndicator.hidesWhenStopped = true
