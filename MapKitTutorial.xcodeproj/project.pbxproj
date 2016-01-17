@@ -57,15 +57,47 @@
 		948398661C405EF60007172F /* MapKitTutorial */ = {
 			isa = PBXGroup;
 			children = (
-				948398671C405EF60007172F /* AppDelegate.swift */,
-				948398691C405EF60007172F /* ViewController.swift */,
-				9483986B1C405EF60007172F /* Main.storyboard */,
-				9483986E1C405EF60007172F /* Assets.xcassets */,
-				948398701C405EF60007172F /* LaunchScreen.storyboard */,
-				948398731C405EF60007172F /* Info.plist */,
-				940220E31C419FF100DD6635 /* MapKit.framework */,
+				94F2F0481C4BB30B00BAB5FA /* Sources */,
+				94F2F0491C4BB31100BAB5FA /* UI */,
+				94F2F04A1C4BB31700BAB5FA /* Supporting Files */,
+				94F2F0471C4BB2FF00BAB5FA /* Frameworks */,
 			);
 			path = MapKitTutorial;
+			sourceTree = "<group>";
+		};
+		94F2F0471C4BB2FF00BAB5FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				940220E31C419FF100DD6635 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94F2F0481C4BB30B00BAB5FA /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				948398671C405EF60007172F /* AppDelegate.swift */,
+				948398691C405EF60007172F /* ViewController.swift */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		94F2F0491C4BB31100BAB5FA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				9483986B1C405EF60007172F /* Main.storyboard */,
+				948398701C405EF60007172F /* LaunchScreen.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		94F2F04A1C4BB31700BAB5FA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9483986E1C405EF60007172F /* Assets.xcassets */,
+				948398731C405EF60007172F /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
