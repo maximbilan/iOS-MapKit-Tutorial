@@ -27,3 +27,20 @@ After that when you requested location, you need to implement didUpdateLocations
 
 Important note: The current authorization status for location data is available from the authorizationStatus class method of CLLocationManager. In requesting authorization in iOS 8 and later, you must use the requestWhenInUseAuthorization or requestAlwaysAuthorizationmethod and include the NSLocationWhenInUseUsageDescription or NSLocationAlwaysUsageDescription key in your Info.plist file to indicate the level of authorization you require.
 
+Let’s continue…
+
+Now I will tell how to do simple search.
+
+First of all you need to add UISearchBarDelegate to your UIViewController. The UISearchBarDelegate protocol defines the optional methods you implement to make a UISearchBar control functional. A UISearchBar object provides the user interface for a search field on a bar, but it’s the application’s responsibility to implement the actions when buttons are tapped. At a minimum, the delegate needs to perform the actual search when text is entered in the text field.
+
+Please add the following variables to your class:
+
+And then we add search navigation bar button:
+
+Implementation of search button action:
+
+And the last point, we need to implement searchBarSearchButtonClicked method from UISearchBarDelegate:
+
+The code is simple and I think you will figure out very easily. One small thing which I would like to share, it is map type. MapView object has mapType property with next values, which you can easily setup:
+
+That’s all, I hope these tutorials help you to start developing apps using MapKit.
