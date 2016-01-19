@@ -1,8 +1,8 @@
 # iOS MapKit Getting Started Part
 
-Hi, I would like to tell how to work with MapKit in iOS using Swift. This post for beginners, I will try to tell as detailed as possible.
+Hi, I would like to tell how to work with <i>MapKit</i> in iOS using <i>Swift</i>. This post for beginners, I will try to tell as detailed as possible.
 
-Apple provides MKMapView class for working with map. This class displays maps and provides interface to navigate map content. Detailed documentation about this class you can found here. Let's start.
+Apple provides <i>MKMapView</i> class for working with map. This class displays maps and provides interface to navigate map content. Detailed documentation about this class you can found here. Let's start.
 First of all add the map view to your storyboard or xib, or create from code. In this sample I will create simple storyboard with one UIViewController which will contain map view.
 
 The second main part, you need to add MapKit framework to your project.
