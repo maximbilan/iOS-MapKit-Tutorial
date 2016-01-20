@@ -10,9 +10,9 @@ The second main part, you need to add <i>MapKit</i> framework to your project.
 
 If you see the map when you run the application, then you are on the right way.
 
-Please add outlet of map view object to your UIViewController. Also you need to import MapKit module in the UIViewController.
+Please add outlet of map view object to your <i>UIViewController</i>. Also you need to import <i>MapKit</i> module in the <i>UIViewController</i>.
 
-Apple provides MKMapViewDelegate and CLLocationManagerDelegate delegates for developers. The MKMapViewDelegate protocol defines a set of optional methods that you can use to receive map-related update messages. Because many map operations require the MKMapView class to load data asynchronously, the map view calls these methods to notify your application when specific operations complete. The map view also uses these methods to request annotation and overlay views and to manage interactions with those views. More details you can found here. The CLLocationManagerDelegate protocol defines the methods used to receive location and heading updates from a CLLocationManager object. More details here.
+Apple provides <i>MKMapViewDelegate</i> and <i>CLLocationManagerDelegate</i> delegates for developers. The MKMapViewDelegate protocol defines a set of optional methods that you can use to receive map-related update messages. Because many map operations require the MKMapView class to load data asynchronously, the map view calls these methods to notify your application when specific operations complete. The map view also uses these methods to request annotation and overlay views and to manage interactions with those views. More details you can found here. The CLLocationManagerDelegate protocol defines the methods used to receive location and heading updates from a CLLocationManager object. More details here.
 
 Don’t forget setup delegate in your code.
 
