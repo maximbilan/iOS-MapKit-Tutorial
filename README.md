@@ -1,4 +1,4 @@
-# iOS MapKit Getting Started Part
+# iOS MapKit Getting Started
 
 Hi, I would like to tell how to work with <i>MapKit</i> in iOS using <i>Swift</i>. This post for beginners, I will try to tell as detailed as possible.
 
