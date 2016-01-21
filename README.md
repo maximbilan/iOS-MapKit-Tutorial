@@ -2,13 +2,21 @@
 
 Hi, I would like to tell how to work with <i>MapKit</i> in iOS using <i>Swift</i>. This post for beginners, I will try to tell as detailed as possible.
 
+![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/1.png)
+
 Apple provides <i>MKMapView</i> class for working with map. This class displays maps and provides interface to navigate map content. Detailed documentation about this class you can found <a href="https://developer.apple.com/library/mac/documentation/MapKit/Reference/MKMapView_Class/">here</a>. Let's start.
 
 First of all add the <i>map view</i> to your <i>storyboard</i> or <i>xib</i>, or create from code. In this sample I will create simple <i>storyboard</i> with one <i>UIViewController</i> which will contain <i>map view</i>.
 
+![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/2.png)
+
 The second main part, you need to add <i>MapKit</i> framework to your project.
 
+![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/3.png)
+
 If you see the map when you run the application, then you are on the right way.
+
+![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/4.png)
 
 Please add outlet of map view object to your <i>UIViewController</i>. Also you need to import <i>MapKit</i> module in the <i>UIViewController</i>.
 
@@ -17,6 +25,8 @@ Apple provides <i>MKMapViewDelegate</i> and <i>CLLocationManagerDelegate</i> del
 Don’t forget setup delegate in your code.
 
 Or via Interface Builder.
+
+![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/5.png)
 
 For CLLocationManagerDelegate the same:
 
@@ -30,6 +40,8 @@ Important note: The current authorization status for location data is available 
 
 Let’s continue…
 
+![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/6.png)
+
 Now I will tell how to do simple search.
 
 First of all you need to add UISearchBarDelegate to your UIViewController. The UISearchBarDelegate protocol defines the optional methods you implement to make a UISearchBar control functional. A UISearchBar object provides the user interface for a search field on a bar, but it’s the application’s responsibility to implement the actions when buttons are tapped. At a minimum, the delegate needs to perform the actual search when text is entered in the text field.
@@ -38,10 +50,14 @@ Please add the following variables to your class:
 
 And then we add search navigation bar button:
 
+![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/7.png)
+
 Implementation of search button action:
 
 And the last point, we need to implement searchBarSearchButtonClicked method from UISearchBarDelegate:
 
 The code is simple and I think you will figure out very easily. One small thing which I would like to share, it is map type. MapView object has mapType property with next values, which you can easily setup:
+
+![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/8.png)
 
 That’s all, I hope these tutorials help you to start developing apps using MapKit.
