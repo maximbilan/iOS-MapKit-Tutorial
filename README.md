@@ -24,7 +24,7 @@ Please add outlet of map view object to your <i>UIViewController</i>. Also you n
 import MapKit
 </pre>
 
-Apple provides <i>MKMapViewDelegate</i> and <i>CLLocationManagerDelegate</i> delegates for developers. The <i>MKMapViewDelegate</i> protocol defines a set of optional methods that you can use to receive map-related update messages. Because many map operations require the MKMapView class to load data asynchronously, the map view calls these methods to notify your application when specific operations complete. The map view also uses these methods to request annotation and overlay views and to manage interactions with those views. More details you can found here. The CLLocationManagerDelegate protocol defines the methods used to receive location and heading updates from a CLLocationManager object. More details here.
+Apple provides <i>MKMapViewDelegate</i> and <i>CLLocationManagerDelegate</i> delegates for developers. The <i>MKMapViewDelegate</i> protocol defines a set of optional methods that you can use to receive map-related update messages. Because many map operations require the <i>MKMapView</i> class to load data asynchronously, the map view calls these methods to notify your application when specific operations complete. The map view also uses these methods to request annotation and overlay views and to manage interactions with those views. More details you can found here. The <i>CLLocationManagerDelegate</i> protocol defines the methods used to receive location and heading updates from a <i>CLLocationManager</i> object. More details here.
 
 Don’t forget setup delegate in your code.
 
@@ -39,11 +39,11 @@ class ViewController: UIViewController, MKMapViewDelegate {
 }
 </pre>
 
-Or via Interface Builder.
+Or via <i>Interface Builder</i>.
 
 ![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/5.png)
 
-For CLLocationManagerDelegate the same:
+For <i>CLLocationManagerDelegate</i> the same:
 
 <pre>
 locationManager.delegate = self
@@ -56,7 +56,7 @@ let currentLocationButton = UIBarButtonItem(title: "Current Location", style: UI
 self.navigationItem.leftBarButtonItem = currentLocationButton
 </pre>
 
-Then implement currentLocationButtonAction method:
+Then implement <i>currentLocationButtonAction</i> method:
 
 <pre>
 func currentLocationButtonAction(sender: UIBarButtonItem) {
@@ -73,7 +73,7 @@ func currentLocationButtonAction(sender: UIBarButtonItem) {
 }
 </pre>
 
-After that when you requested location, you need to implement didUpdateLocations from CLLocationManagerDelegate, and here you can add location to map view. Please see the next code:
+After that when you requested location, you need to implement <i>didUpdateLocations</i> from <i>CLLocationManagerDelegate</i>, and here you can add location to <i>map view</i>. Please see the next code:
 
 <pre>
 func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -92,7 +92,7 @@ func locationManager(manager: CLLocationManager, didUpdateLocations locations: [
 }
 </pre>
 
-Important note: The current authorization status for location data is available from the authorizationStatus class method of CLLocationManager. In requesting authorization in iOS 8 and later, you must use the requestWhenInUseAuthorization or requestAlwaysAuthorizationmethod and include the NSLocationWhenInUseUsageDescription or NSLocationAlwaysUsageDescription key in your Info.plist file to indicate the level of authorization you require.
+<b>Important note:</b> The current authorization status for location data is available from the <i>authorizationStatus</i> class method of <i>CLLocationManager</i>. In requesting authorization in iOS 8 and later, you must use the <i>requestWhenInUseAuthorization</i> or <i>requestAlwaysAuthorization</i> method and include the <i>NSLocationWhenInUseUsageDescription</i> or <i>NSLocationAlwaysUsageDescription</i> key in your <b>Info.plist</b> file to indicate the level of authorization you require.
 
 Let’s continue…
 
@@ -100,7 +100,7 @@ Let’s continue…
 
 Now I will tell how to do simple search.
 
-First of all you need to add UISearchBarDelegate to your UIViewController. The UISearchBarDelegate protocol defines the optional methods you implement to make a UISearchBar control functional. A UISearchBar object provides the user interface for a search field on a bar, but it’s the application’s responsibility to implement the actions when buttons are tapped. At a minimum, the delegate needs to perform the actual search when text is entered in the text field.
+First of all you need to add <i>UISearchBarDelegate</i> to your <i>UIViewController</i>. The <i>UISearchBarDelegate</i> protocol defines the optional methods you implement to make a <i>UISearchBar</i> control functional. A <i>UISearchBar</i> object provides the user interface for a search field on a bar, but it’s the application’s responsibility to implement the actions when buttons are tapped. At a minimum, the delegate needs to perform the actual search when text is entered in the text field.
 
 Please add the following variables to your class:
 
@@ -133,7 +133,7 @@ func searchButtonAction(button: UIBarButtonItem) {
 }
 </pre>
 
-And the last point, we need to implement searchBarSearchButtonClicked method from UISearchBarDelegate:
+And the last point, we need to implement <i>searchBarSearchButtonClicked</i> method from <i>UISearchBarDelegate</i>:
 
 <pre>
 func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -163,7 +163,7 @@ func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 }
 </pre>
 
-The code is simple and I think you will figure out very easily. One small thing which I would like to share, it is map type. MapView object has mapType property with next values, which you can easily setup:
+The code is simple and I think you will figure out very easily. One small thing which I would like to share, it is map type. <i>MapView</i> object has mapType property with next values, which you can easily setup:
 
 <pre>
 Standard
@@ -173,4 +173,4 @@ Hybrid
 
 ![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/8.png)
 
-That’s all, I hope these tutorials help you to start developing apps using MapKit.
+That’s all, I hope these tutorials help you to start developing apps using <i>MapKit</i>.
