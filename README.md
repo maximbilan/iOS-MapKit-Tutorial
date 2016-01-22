@@ -20,9 +20,24 @@ If you see the map when you run the application, then you are on the right way.
 
 Please add outlet of map view object to your <i>UIViewController</i>. Also you need to import <i>MapKit</i> module in the <i>UIViewController</i>.
 
-Apple provides <i>MKMapViewDelegate</i> and <i>CLLocationManagerDelegate</i> delegates for developers. The MKMapViewDelegate protocol defines a set of optional methods that you can use to receive map-related update messages. Because many map operations require the MKMapView class to load data asynchronously, the map view calls these methods to notify your application when specific operations complete. The map view also uses these methods to request annotation and overlay views and to manage interactions with those views. More details you can found here. The CLLocationManagerDelegate protocol defines the methods used to receive location and heading updates from a CLLocationManager object. More details here.
+<pre>
+import MapKit
+</pre>
+
+Apple provides <i>MKMapViewDelegate</i> and <i>CLLocationManagerDelegate</i> delegates for developers. The <i>MKMapViewDelegate</i> protocol defines a set of optional methods that you can use to receive map-related update messages. Because many map operations require the MKMapView class to load data asynchronously, the map view calls these methods to notify your application when specific operations complete. The map view also uses these methods to request annotation and overlay views and to manage interactions with those views. More details you can found here. The CLLocationManagerDelegate protocol defines the methods used to receive location and heading updates from a CLLocationManager object. More details here.
 
 Don’t forget setup delegate in your code.
+
+<pre>
+import MapKit
+class ViewController: UIViewController, MKMapViewDelegate {
+  @IBOutlet weak var mapView: MKMapView!
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    mapView.delegate = self
+  }
+}
+</pre>
 
 Or via Interface Builder.
 
@@ -30,11 +45,52 @@ Or via Interface Builder.
 
 For CLLocationManagerDelegate the same:
 
+<pre>
+locationManager.delegate = self
+</pre>
+
 Let’s try to add button for detecting current location.
+
+<pre>
+let currentLocationButton = UIBarButtonItem(title: "Current Location", style: UIBarButtonItemStyle.Plain, target: self, action: "currentLocationButtonAction:")
+self.navigationItem.leftBarButtonItem = currentLocationButton
+</pre>
 
 Then implement currentLocationButtonAction method:
 
+<pre>
+func currentLocationButtonAction(sender: UIBarButtonItem) {
+  if (CLLocationManager.locationServicesEnabled()) {
+    if locationManager == nil {
+      locationManager = CLLocationManager()
+    }
+    locationManager?.requestWhenInUseAuthorization()
+    locationManager.delegate = self
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    locationManager.requestAlwaysAuthorization()
+    locationManager.startUpdatingLocation()
+  }
+}
+</pre>
+
 After that when you requested location, you need to implement didUpdateLocations from CLLocationManagerDelegate, and here you can add location to map view. Please see the next code:
+
+<pre>
+func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+  let location = locations.last
+  let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+  let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+  self.mapView.setRegion(region, animated: true)
+  if self.mapView.annotations.count != 0 {
+    annotation = self.mapView.annotations[0]
+    self.mapView.removeAnnotation(annotation)
+  }
+  let pointAnnotation = MKPointAnnotation()
+  pointAnnotation.coordinate = location!.coordinate
+  pointAnnotation.title = ""
+  mapView.addAnnotation(pointAnnotation)
+}
+</pre>
 
 Important note: The current authorization status for location data is available from the authorizationStatus class method of CLLocationManager. In requesting authorization in iOS 8 and later, you must use the requestWhenInUseAuthorization or requestAlwaysAuthorizationmethod and include the NSLocationWhenInUseUsageDescription or NSLocationAlwaysUsageDescription key in your Info.plist file to indicate the level of authorization you require.
 
@@ -48,15 +104,72 @@ First of all you need to add UISearchBarDelegate to your UIViewController. The U
 
 Please add the following variables to your class:
 
+<pre>
+private var searchController: UISearchController!
+private var localSearchRequest: MKLocalSearchRequest!
+private var localSearch: MKLocalSearch!
+private var localSearchResponse: MKLocalSearchResponse!
+</pre>
+
 And then we add search navigation bar button:
+
+<pre>
+let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: "searchButtonAction:")
+self.navigationItem.rightBarButtonItem = searchButton
+</pre>
 
 ![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/7.png)
 
 Implementation of search button action:
 
+<pre>
+func searchButtonAction(button: UIBarButtonItem) {
+  if searchController == nil {
+    searchController = UISearchController(searchResultsController: nil)
+  }
+  searchController.hidesNavigationBarDuringPresentation = false
+  self.searchController.searchBar.delegate = self
+  presentViewController(searchController, animated: true, completion: nil)
+}
+</pre>
+
 And the last point, we need to implement searchBarSearchButtonClicked method from UISearchBarDelegate:
 
+<pre>
+func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+  searchBar.resignFirstResponder()
+  dismissViewControllerAnimated(true, completion: nil)
+  
+  if self.mapView.annotations.count != 0 {
+    annotation = self.mapView.annotations[0]
+    self.mapView.removeAnnotation(annotation)
+  }
+  localSearchRequest = MKLocalSearchRequest()
+  localSearchRequest.naturalLanguageQuery = searchBar.text
+  localSearch = MKLocalSearch(request: localSearchRequest)
+  localSearch.startWithCompletionHandler { [weak self]  (localSearchResponse, error) -> Void in
+    if localSearchResponse == nil {
+      let alert = UIAlertView(title: nil, message: “Place not found”, delegate: self, cancelButtonTitle: “Try again”)
+      alert.show()
+      return
+    }
+    let pointAnnotation = MKPointAnnotation()
+    pointAnnotation.title = searchBar.text
+    pointAnnotation.coordinate = CLLocationCoordinate2D(latitude:     localSearchResponse!.boundingRegion.center.latitude, longitude: localSearchResponse!.boundingRegion.center.longitude)
+    let pinAnnotationView = MKPinAnnotationView(annotation: pointAnnotation, reuseIdentifier: nil)
+    self!.mapView.centerCoordinate = pointAnnotation.coordinate
+    self!.mapView.addAnnotation(pinAnnotationView.annotation!)
+  }
+}
+</pre>
+
 The code is simple and I think you will figure out very easily. One small thing which I would like to share, it is map type. MapView object has mapType property with next values, which you can easily setup:
+
+<pre>
+Standard
+Satellite
+Hybrid
+</pre>
 
 ![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/8.png)
 
