@@ -100,7 +100,7 @@ Let’s continue…
 
 Now I will tell how to do simple search.
 
-First of all you need to add <i>UISearchBarDelegate</i> to your <i>UIViewController</i>. The <i>UISearchBarDelegate</i> protocol defines the optional methods you implement to make a <i>UISearchBar</i> control functional. A <i>UISearchBar</i> object provides the user interface for a search field on a bar, but it’s the application’s responsibility to implement the actions when buttons are tapped. At a minimum, the delegate needs to perform the actual search when text is entered in the text field.
+First of all you need to add <i><a href="https://developer.apple.com/library/tvos/documentation/UIKit/Reference/UISearchBarDelegate_Protocol/index.html">UISearchBarDelegate</a></i> to your <i>UIViewController</i>. The <i><a href="https://developer.apple.com/library/tvos/documentation/UIKit/Reference/UISearchBarDelegate_Protocol/index.html">UISearchBarDelegate</a></i> protocol defines the optional methods you implement to make a <i><a href="https://developer.apple.com/library/tvos/documentation/UIKit/Reference/UISearchBar_Class/index.html#//apple_ref/occ/cl/UISearchBar">UISearchBar</a></i> control functional. A <i><a href="https://developer.apple.com/library/tvos/documentation/UIKit/Reference/UISearchBar_Class/index.html#//apple_ref/occ/cl/UISearchBar">UISearchBar</a></i> object provides the user interface for a search field on a bar, but it’s the application’s responsibility to implement the actions when buttons are tapped. At a minimum, the delegate needs to perform the actual search when text is entered in the text field.
 
 Please add the following variables to your class:
 
