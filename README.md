@@ -4,7 +4,7 @@ Hi, I would like to tell how to work with <i>MapKit</i> in iOS using <i>Swift</i
 
 ![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/1.png)
 
-Apple provides <i>MKMapView</i> class for working with map. This class displays maps and provides interface to navigate map content. Detailed documentation about this class you can found <a href="https://developer.apple.com/library/mac/documentation/MapKit/Reference/MKMapView_Class/">here</a>. Let's start.
+Apple provides <i><a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapView_Class/index.html#//apple_ref/occ/cl/MKMapView">MKMapView</a></i> class for working with map. This class displays maps and provides interface to navigate map content. Detailed documentation about this class you can found <a href="https://developer.apple.com/library/mac/documentation/MapKit/Reference/MKMapView_Class/">here</a>. Let's start.
 
 First of all add the <i>map view</i> to your <i>storyboard</i> or <i>xib</i>, or create from code. In this sample I will create simple <i>storyboard</i> with one <i>UIViewController</i> which will contain <i>map view</i>.
 
