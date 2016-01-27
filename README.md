@@ -24,7 +24,7 @@ Please add outlet of map view object to your <i>UIViewController</i>. Also you n
 import MapKit
 </pre>
 
-Apple provides <i><a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapViewDelegate_Protocol/">MKMapViewDelegate</a></i> and <i>CLLocationManagerDelegate</i> delegates for developers. The <i><a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapViewDelegate_Protocol/">MKMapViewDelegate</a></i> protocol defines a set of optional methods that you can use to receive map-related update messages. Because many map operations require the <i><a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapView_Class/index.html#//apple_ref/occ/cl/MKMapView">MKMapView</a></i> class to load data asynchronously, the map view calls these methods to notify your application when specific operations complete. The map view also uses these methods to request annotation and overlay views and to manage interactions with those views. More details you can found <a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapViewDelegate_Protocol/">here</a>. The <i>CLLocationManagerDelegate</i> protocol defines the methods used to receive location and heading updates from a <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManager_Class/index.html#//apple_ref/occ/cl/CLLocationManager">CLLocationManager</a></i> object. More details <a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManagerDelegate_Protocol/">here</a>.
+Apple provides <i><a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapViewDelegate_Protocol/">MKMapViewDelegate</a></i> and <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManagerDelegate_Protocol/">CLLocationManagerDelegate</a></i> delegates for developers. The <i><a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapViewDelegate_Protocol/">MKMapViewDelegate</a></i> protocol defines a set of optional methods that you can use to receive map-related update messages. Because many map operations require the <i><a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapView_Class/index.html#//apple_ref/occ/cl/MKMapView">MKMapView</a></i> class to load data asynchronously, the map view calls these methods to notify your application when specific operations complete. The map view also uses these methods to request annotation and overlay views and to manage interactions with those views. More details you can found <a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapViewDelegate_Protocol/">here</a>. The <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManagerDelegate_Protocol/">CLLocationManagerDelegate</a></i> protocol defines the methods used to receive location and heading updates from a <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManager_Class/index.html#//apple_ref/occ/cl/CLLocationManager">CLLocationManager</a></i> object. More details <a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManagerDelegate_Protocol/">here</a>.
 
 Don’t forget setup delegate in your code.
 
@@ -43,7 +43,7 @@ Or via <i>Interface Builder</i>.
 
 ![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/5.png)
 
-For <i>CLLocationManagerDelegate</i> the same:
+For <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManagerDelegate_Protocol/">CLLocationManagerDelegate</a></i> the same:
 
 <pre>
 locationManager.delegate = self
@@ -73,7 +73,7 @@ func currentLocationButtonAction(sender: UIBarButtonItem) {
 }
 </pre>
 
-After that when you requested location, you need to implement <i>didUpdateLocations</i> from <i>CLLocationManagerDelegate</i>, and here you can add location to <i>map view</i>. Please see the next code:
+After that when you requested location, you need to implement <i>didUpdateLocations</i> from <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManagerDelegate_Protocol/">CLLocationManagerDelegate</a></i>, and here you can add location to <i>map view</i>. Please see the next code:
 
 <pre>
 func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
