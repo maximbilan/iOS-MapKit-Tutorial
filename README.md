@@ -49,7 +49,7 @@ For <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocati
 locationManager.delegate = self
 </pre>
 
-Let’s try to add button for detecting current location.
+Let’s try to add button for detecting current location:
 
 <pre>
 let currentLocationButton = UIBarButtonItem(title: "Current Location", style: UIBarButtonItemStyle.Plain, target: self, action: "currentLocationButtonAction:")
