@@ -17,41 +17,41 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	
 	// MARK: - Search
 	
-	private var searchController: UISearchController!
-	private var localSearchRequest: MKLocalSearchRequest!
-	private var localSearch: MKLocalSearch!
-	private var localSearchResponse: MKLocalSearchResponse!
+	fileprivate var searchController: UISearchController!
+	fileprivate var localSearchRequest: MKLocalSearchRequest!
+	fileprivate var localSearch: MKLocalSearch!
+	fileprivate var localSearchResponse: MKLocalSearchResponse!
 	
 	// MARK: - Map variables
 	
-	private var annotation: MKAnnotation!
-	private var locationManager: CLLocationManager!
-	private var isCurrentLocation: Bool = false
+	fileprivate var annotation: MKAnnotation!
+	fileprivate var locationManager: CLLocationManager!
+	fileprivate var isCurrentLocation: Bool = false
 	
 	// MARK: - Activity Indicator
 	
-	private var activityIndicator: UIActivityIndicatorView!
+	fileprivate var activityIndicator: UIActivityIndicatorView!
 	
 	// MARK: - UIViewController's methods
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		let currentLocationButton = UIBarButtonItem(title: "Current Location", style: UIBarButtonItemStyle.Plain, target: self, action: "currentLocationButtonAction:")
+		let currentLocationButton = UIBarButtonItem(title: "Current Location", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController.currentLocationButtonAction(_:)))
 		self.navigationItem.leftBarButtonItem = currentLocationButton
 		
-		let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: "searchButtonAction:")
+		let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(ViewController.searchButtonAction(_:)))
 		self.navigationItem.rightBarButtonItem = searchButton
 		
 		mapView.delegate = self
-		mapView.mapType = .Hybrid
+		mapView.mapType = .hybrid
 		
-		activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+		activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
 		activityIndicator.hidesWhenStopped = true
 		self.view.addSubview(activityIndicator)
 	}
 	
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
 		activityIndicator.center = self.view.center
@@ -59,7 +59,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	
 	// MARK: - Actions
 	
-	func currentLocationButtonAction(sender: UIBarButtonItem) {
+	func currentLocationButtonAction(_ sender: UIBarButtonItem) {
 		if (CLLocationManager.locationServicesEnabled()) {
 			if locationManager == nil {
 				locationManager = CLLocationManager()
@@ -75,20 +75,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	
 	// MARK: - Search
 	
-	func searchButtonAction(button: UIBarButtonItem) {
+	func searchButtonAction(_ button: UIBarButtonItem) {
 		if searchController == nil {
 			searchController = UISearchController(searchResultsController: nil)
 		}
 		searchController.hidesNavigationBarDuringPresentation = false
 		self.searchController.searchBar.delegate = self
-		presentViewController(searchController, animated: true, completion: nil)
+		present(searchController, animated: true, completion: nil)
 	}
 	
 	// MARK: - UISearchBarDelegate
 	
-	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		searchBar.resignFirstResponder()
-		dismissViewControllerAnimated(true, completion: nil)
+		dismiss(animated: true, completion: nil)
 		
 		if self.mapView.annotations.count != 0 {
 			annotation = self.mapView.annotations[0]
@@ -98,7 +98,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 		localSearchRequest = MKLocalSearchRequest()
 		localSearchRequest.naturalLanguageQuery = searchBar.text
 		localSearch = MKLocalSearch(request: localSearchRequest)
-		localSearch.startWithCompletionHandler { [weak self] (localSearchResponse, error) -> Void in
+		localSearch.start { [weak self] (localSearchResponse, error) -> Void in
 			
 			if localSearchResponse == nil {
 				let alert = UIAlertView(title: nil, message: "Place not found", delegate: self, cancelButtonTitle: "Try again")
@@ -118,7 +118,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	
 	// MARK: - CLLocationManagerDelegate
 	
-	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		
 		if !isCurrentLocation {
 			return
