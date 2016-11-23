@@ -163,7 +163,7 @@ func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 }
 </pre>
 
-The code is simple and I think you will figure out very easily. One small thing which I would like to share, it is map type. <i>MapView</i> object has mapType property with next values, which you can easily setup:
+The code is simple and I think you will figure out very easily. One small thing which I would like to share, it is map type. <i>MapView</i> object has <i>mapType</i> property with next values, which you can easily setup:
 
 <pre>
 Standard
