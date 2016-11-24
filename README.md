@@ -73,7 +73,7 @@ func currentLocationButtonAction(sender: UIBarButtonItem) {
 }
 </pre>
 
-After that when you requested location, you need to implement <i>didUpdateLocations</i> from <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManagerDelegate_Protocol/">CLLocationManagerDelegate</a></i>, and here you can add location to <i>map view</i>. Please see the next code:
+After that when you requested location, you need to implement <i>didUpdateLocations</i> from <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManagerDelegate_Protocol/">CLLocationManagerDelegate</a></i>, and here you can add location to <i>mapView</i>. Please see the next code:
 
 <pre>
 func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
