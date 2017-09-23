@@ -59,7 +59,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	
 	// MARK: - Actions
 	
-	func currentLocationButtonAction(_ sender: UIBarButtonItem) {
+	@objc func currentLocationButtonAction(_ sender: UIBarButtonItem) {
 		if (CLLocationManager.locationServicesEnabled()) {
 			if locationManager == nil {
 				locationManager = CLLocationManager()
@@ -75,7 +75,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	
 	// MARK: - Search
 	
-	func searchButtonAction(_ button: UIBarButtonItem) {
+	@objc func searchButtonAction(_ button: UIBarButtonItem) {
 		if searchController == nil {
 			searchController = UISearchController(searchResultsController: nil)
 		}
