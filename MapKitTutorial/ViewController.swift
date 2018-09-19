@@ -18,9 +18,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	// MARK: - Search
 	
 	fileprivate var searchController: UISearchController!
-	fileprivate var localSearchRequest: MKLocalSearchRequest!
+	fileprivate var localSearchRequest: MKLocalSearch.Request!
 	fileprivate var localSearch: MKLocalSearch!
-	fileprivate var localSearchResponse: MKLocalSearchResponse!
+	fileprivate var localSearchResponse: MKLocalSearch.Response!
 	
 	// MARK: - Map variables
 	
@@ -37,16 +37,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		let currentLocationButton = UIBarButtonItem(title: "Current Location", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController.currentLocationButtonAction(_:)))
+		let currentLocationButton = UIBarButtonItem(title: "Current Location", style: UIBarButtonItem.Style.plain, target: self, action: #selector(ViewController.currentLocationButtonAction(_:)))
 		self.navigationItem.leftBarButtonItem = currentLocationButton
 		
-		let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(ViewController.searchButtonAction(_:)))
+		let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search, target: self, action: #selector(ViewController.searchButtonAction(_:)))
 		self.navigationItem.rightBarButtonItem = searchButton
 		
 		mapView.delegate = self
 		mapView.mapType = .hybrid
 		
-		activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+		activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
 		activityIndicator.hidesWhenStopped = true
 		self.view.addSubview(activityIndicator)
 	}
@@ -95,7 +95,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 			self.mapView.removeAnnotation(annotation)
 		}
 		
-		localSearchRequest = MKLocalSearchRequest()
+		localSearchRequest = MKLocalSearch.Request()
 		localSearchRequest.naturalLanguageQuery = searchBar.text
 		localSearch = MKLocalSearch(request: localSearchRequest)
 		localSearch.start { [weak self] (localSearchResponse, error) -> Void in
