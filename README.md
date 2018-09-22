@@ -6,7 +6,7 @@ Hi, I would like to tell how to work with <i>MapKit</i> in iOS using <i>Swift</i
 
 Apple provides <i><a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapView_Class/index.html#//apple_ref/occ/cl/MKMapView">MKMapView</a></i> class for working with map. This class displays maps and provides interface to navigate map content. Detailed documentation about this class you can found <a href="https://developer.apple.com/library/mac/documentation/MapKit/Reference/MKMapView_Class/">here</a>. Let's start.
 
-First of all add the <i>map view</i> to your <i>storyboard</i> or <i>xib</i>, or create from code. In this sample I will create simple <i>storyboard</i> with one <i>UIViewController</i> which will contain <i>map view</i>.
+First of all add the <i>map view</i> to your <i>storyboard</i> or <i>xib</i>, or create from the code. In this sample I will create a simple <i>storyboard</i> with one <i>UIViewController</i> which will contain <i>map view</i>.
 
 ![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/2.png)
 
@@ -18,7 +18,7 @@ If you see the map when you run the application, then you are on the right way.
 
 ![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/4.png)
 
-Please add outlet of map view object to your <i>UIViewController</i>. Also you need to import <i>MapKit</i> module in the <i>UIViewController</i>.
+Please add an outlet of map view object to your <i>UIViewController</i>. Also you need to import <i>MapKit</i> module in the <i>UIViewController</i>.
 
 <pre>
 import MapKit
@@ -26,7 +26,7 @@ import MapKit
 
 Apple provides <i><a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapViewDelegate_Protocol/">MKMapViewDelegate</a></i> and <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManagerDelegate_Protocol/">CLLocationManagerDelegate</a></i> delegates for developers. The <i><a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapViewDelegate_Protocol/">MKMapViewDelegate</a></i> protocol defines a set of optional methods that you can use to receive map-related update messages. Because many map operations require the <i><a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapView_Class/index.html#//apple_ref/occ/cl/MKMapView">MKMapView</a></i> class to load data asynchronously, the map view calls these methods to notify your application when specific operations complete. The map view also uses these methods to request annotation and overlay views and to manage interactions with those views. More details you can found <a href="https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapViewDelegate_Protocol/">here</a>. The <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManagerDelegate_Protocol/">CLLocationManagerDelegate</a></i> protocol defines the methods used to receive location and heading updates from a <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManager_Class/index.html#//apple_ref/occ/cl/CLLocationManager">CLLocationManager</a></i> object. More details <a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManagerDelegate_Protocol/">here</a>.
 
-Don’t forget setup delegate in your code.
+Don’t forget set up a delegate in your code.
 
 <pre>
 import MapKit
@@ -49,7 +49,7 @@ For <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocati
 locationManager.delegate = self
 </pre>
 
-Let’s try to add button for detecting current location:
+Let’s try to add a button for detecting the current location:
 
 <pre>
 let currentLocationButton = UIBarButtonItem(title: "Current Location", style: UIBarButtonItemStyle.Plain, target: self, action: "currentLocationButtonAction:")
@@ -73,7 +73,7 @@ func currentLocationButtonAction(sender: UIBarButtonItem) {
 }
 </pre>
 
-After that when you requested location, you need to implement <i>didUpdateLocations</i> from <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManagerDelegate_Protocol/">CLLocationManagerDelegate</a></i>, and here you can add location to <i>mapView</i>. Please see the next code:
+After that when you requested the location, you need to implement <i>didUpdateLocations</i> from <i><a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManagerDelegate_Protocol/">CLLocationManagerDelegate</a></i>, and here you can add location to <i>mapView</i>. Please see the next code:
 
 <pre>
 func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -98,7 +98,7 @@ Let’s continue…
 
 ![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/6.png)
 
-Now I will tell how to do simple search.
+Now I will tell how to do a simple search.
 
 First of all you need to add <i><a href="https://developer.apple.com/library/tvos/documentation/UIKit/Reference/UISearchBarDelegate_Protocol/index.html">UISearchBarDelegate</a></i> to your <i>UIViewController</i>. The <i><a href="https://developer.apple.com/library/tvos/documentation/UIKit/Reference/UISearchBarDelegate_Protocol/index.html">UISearchBarDelegate</a></i> protocol defines the optional methods you implement to make a <i><a href="https://developer.apple.com/library/tvos/documentation/UIKit/Reference/UISearchBar_Class/index.html#//apple_ref/occ/cl/UISearchBar">UISearchBar</a></i> control functional. A <i><a href="https://developer.apple.com/library/tvos/documentation/UIKit/Reference/UISearchBar_Class/index.html#//apple_ref/occ/cl/UISearchBar">UISearchBar</a></i> object provides the user interface for a search field on a bar, but it’s the application’s responsibility to implement the actions when buttons are tapped. At a minimum, the delegate needs to perform the actual search when text is entered in the text field.
 
@@ -120,7 +120,7 @@ self.navigationItem.rightBarButtonItem = searchButton
 
 ![alt tag](https://raw.github.com/maximbilan/iOS-MapKit-Tutorial/master/images/7.png)
 
-Implementation of search button action:
+Implementation of the search button action:
 
 <pre>
 func searchButtonAction(button: UIBarButtonItem) {
@@ -163,7 +163,7 @@ func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 }
 </pre>
 
-The code is simple and I think you will figure out very easily. One small thing which I would like to share, it is map type. <i>MapView</i> object has <i>mapType</i> property with next values, which you can easily setup:
+The code is simple and I think you will figure out very easily. One small thing which I would like to share, it is a map type. <i>MapView</i> object has <i>mapType</i> property with next values, which you can easily set up:
 
 <pre>
 Standard
