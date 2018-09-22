@@ -111,7 +111,7 @@ private var localSearch: MKLocalSearch!
 private var localSearchResponse: MKLocalSearchResponse!
 </pre>
 
-And then we add search navigation bar button:
+And then we add a search navigation bar button:
 
 <pre>
 let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: "searchButtonAction:")
